@@ -10,36 +10,31 @@ public class Biblioteca {
         this.baseDatos = baseDatos;
     }
 
-    public Boolean prestar_libro() {
-
+    public void prestar_libro() {
         Usario usario = eligirUsario();
-        if (usario == null) return false;
+        if (usario == null) return;
         Libro libro = eligirLibro();
-        if (libro == null) return false;
+        if (libro == null) return;
 
         if (libro.isDisponible()) {
             libro.setUsario(usario);
             usario.addLibro(libro);
-            JOptionPane.showMessageDialog(null, "Libro: " + libro.getTitulo() + " prestando a: " + usario.getNombre());
-            return true;
+            JOptionPane.showMessageDialog(null, "Libro: ´´" + libro.getTitulo() + "´´ prestando a: " + usario.getNombre());
         } else {
-            JOptionPane.showMessageDialog(null, "Libro: " + libro.getTitulo() + " no diponible ");
-            return false;
+            JOptionPane.showMessageDialog(null, "Libro: ´´" + libro.getTitulo() + "´´ no diponible ");
         }
-
     }
 
-    public Boolean devolver_libro() {
+    public void devolver_libro() {
 
         Usario usario = eligirUsario();
-        if (usario == null) return false;
+        if (usario == null) return;
         Libro libro = eligirLibroDeUsario(usario);
-        if (libro == null) return false;
+        if (libro == null) return;
 
         libro.setUsario(null);
         usario.getLibros().remove(libro);
-        JOptionPane.showMessageDialog(null, "Libro: " + libro.getTitulo() + " devolviendo");
-        return true;
+        JOptionPane.showMessageDialog(null, "Libro: ´´" + libro.getTitulo() + "´´ devolviendo");
 
     }
 
@@ -161,17 +156,17 @@ public class Biblioteca {
         return infoLibro;
     }
 
-    public Boolean addLibro() {
+    public void addLibro() {
 
         String autor = MisFunciones.pedirStrNoVacio("Autor de libro?");
-        if (autor == null) return false;
+        if (autor == null) return;
 
         String titulo;
         boolean existe;
         do {
             existe = false;
             titulo = MisFunciones.pedirStrNoVacio("titulo de libro?");
-            if (titulo == null) return false;
+            if (titulo == null) return;
             for (Libro libro : this.baseDatos.getLibros()) {
                 if (libro.getTitulo().equals(titulo)) {
                     existe = true;
@@ -182,21 +177,20 @@ public class Biblioteca {
 
         new Libro(titulo, autor, this);
         JOptionPane.showMessageDialog(null, "Libro agregado");
-        return true;
 
     }
 
-    public Boolean addUsario() {
+    public void addUsario() {
 
         String nombre = MisFunciones.pedirStrNoVacio("Nombre de usario?");
-        if (nombre == null) return false;
+        if (nombre == null) return;
 
         String dni;
         boolean existe;
         do {
             existe = false;
             dni = MisFunciones.pedirStrNoVacio("DNI?");
-            if (dni == null) return false;
+            if (dni == null) return;
             for (Usario usario : this.baseDatos.getUsarios()) {
                 if (usario.getDni().equals(dni)) {
                     existe = true;
@@ -207,7 +201,6 @@ public class Biblioteca {
 
         new Usario(nombre, dni, this);
         JOptionPane.showMessageDialog(null, "Usario agregado");
-        return true;
 
     }
 

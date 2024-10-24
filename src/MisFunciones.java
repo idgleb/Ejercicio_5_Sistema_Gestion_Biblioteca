@@ -6,16 +6,17 @@ import java.util.List;
 import java.util.function.Supplier;
 
 /*
-String[] opc = {"mostrarCarrito", "carito::agregarProducto", "mostrarStock"};
-        MisFunciones.interfaz(
-        carito::mostrarCarrito,
-        carito::agregarProducto,
-        supermercado::mostrarStock,
-        opc, supermercado::reporte
-);
+        String[] opc = {"Agregar NEW Usario", "Agregar NEW Libro", "Prestar libro", "Devolver libro"};
+        Runnable[] ac = new Runnable[]{
+                biblioteca::addUsario,
+                biblioteca::addLibro,
+                biblioteca::prestar_libro,
+                biblioteca::devolver_libro,
+        };
+        MisFunciones.interfaz(ac, opc, biblioteca::getReporte);
 */
 
-public abstract class MisFunciones {
+public class MisFunciones {
 
     public static int eligirEn(String[][] matriz) {
 
